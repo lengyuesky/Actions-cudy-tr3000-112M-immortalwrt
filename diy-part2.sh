@@ -18,3 +18,12 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+# 修改 mt7981b-cudy-tr3000-v1.dts 中的 reg 值
+DTS_FILE="target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts"
+
+if [ -f "$DTS_FILE" ]; then
+  sed -i 's/reg = <0x5c0000 0x4000000>;/reg = <0x5c0000 0x7000000>;/' "$DTS_FILE"
+  echo "Successfully modified $DTS_FILE"
+else
+  echo "$DTS_FILE not found!"
+fi
